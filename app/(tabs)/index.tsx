@@ -1,9 +1,14 @@
 import { Image, StyleSheet, Platform } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import { Button } from '~/components/ui/button';
+import { Text } from '~/components/ui/text';
+
+const GITHUB_AVATAR_URI = 'https://github.com/adeirjunior.png';
 
 export default function HomeScreen() {
   return (
@@ -16,9 +21,59 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <Avatar alt="Zach Nugent's Avatar">
+          <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
+          <AvatarFallback>
+            <Text>AD</Text>
+          </AvatarFallback>
+        </Avatar>
+        <ThemedView>
+          <ThemedText >Boa noite,</ThemedText>
+          <ThemedText type="subtitle">
+            Adeir Junior
+          </ThemedText>
+        </ThemedView>
+
       </ThemedView>
+
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant='outline'>
+            <Text>Edit Profile</Text>
+          </Button>
+        </DialogTrigger>
+        <DialogContent className='sm:max-w-[425px]'>
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button>
+                <Text>OK</Text>
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <ThemedView>
+        <ThemedText type='subtitle'>Saldo geral</ThemedText>
+        <ThemedText type='title'>R$ 1.000,00</ThemedText>
+      </ThemedView>
+
+      <ThemedView>
+        <ThemedText type='subtitle'>Minhas contas</ThemedText>
+        <ThemedText type='title'>R$ 1.000,00</ThemedText>
+      </ThemedView>
+
+      <ThemedView>
+        <ThemedText type='subtitle'>Todas as faturas</ThemedText>
+        <ThemedText type='title'>R$ 1.000,00</ThemedText>
+      </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
