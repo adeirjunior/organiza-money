@@ -1,5 +1,3 @@
-import { StyleSheet } from 'react-native';
-
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -9,21 +7,27 @@ import { Text } from '~/components/ui/text';
 import { cn } from '~/lib/utils';
 import { IconSymbol } from '~/components/ui/IconSymbol';
 import { Separator } from '~/components/ui/separator';
-
-const GITHUB_AVATAR_URI = 'https://github.com/adeirjunior.png';
+import { Link, useRouter } from 'expo-router';
+import { Colors } from '@/constants/Colors';
+import { GITHUB_AVATAR_URI } from '~/constants/images';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function HomeScreen() {
+  const router = useRouter();
+  const colorScheme = useColorScheme();
   return (
     <ParallaxScrollView>
 
       <ThemedView className={cn('mt-10 flex flex-row justify-between items-center')}>
         <ThemedView className={cn('flex flex-row gap-4')}>
-          <Avatar className={cn('w-16 h-16')} alt="Zach Nugent's Avatar">
-            <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
-            <AvatarFallback>
-              <Text>AD</Text>
-            </AvatarFallback>
-          </Avatar>
+          <Link href="/profile">
+            <Avatar className={cn('w-16 h-16')} alt="Zach Nugent's Avatar">
+              <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
+              <AvatarFallback>
+                <Text>AD</Text>
+              </AvatarFallback>
+            </Avatar>
+          </Link>
           <ThemedView>
             <ThemedText >Boa noite,</ThemedText>
             <ThemedText type="subtitle">
@@ -32,9 +36,9 @@ export default function HomeScreen() {
           </ThemedView>
         </ThemedView>
 
-        <Button>
-          <IconSymbol name="notification.fill" color="black" />
-        </Button>
+          <Button variant="outline" onPress={() => router.push('/notifications')}>
+          <IconSymbol name="notification.fill" color={Colors[colorScheme ?? 'light'].icon} />
+          </Button>
       </ThemedView>
 
       <ThemedView className={cn('gap-4 flex flex-row justify-between items-center')}>
@@ -52,7 +56,7 @@ export default function HomeScreen() {
             <ThemedText>Saldo geral</ThemedText>
             <ThemedText type='subtitle'>R$ 1.000,00</ThemedText>
           </ThemedView>
-          <IconSymbol name="eye.fill" color="white" />
+          <IconSymbol name="eye.fill" color={Colors[colorScheme ?? 'light'].icon} />
         </ThemedView>
 
         <Separator className='my-4' />
@@ -81,7 +85,7 @@ export default function HomeScreen() {
               </ThemedView>
             ))}
           </ThemedView>
-          <Button className={cn('my-8 dark:bg-black')}>
+          <Button variant="outline" onPress={() => router.push('/accounts')} className={cn('my-8')}>
             <ThemedText type='defaultSemiBold'>
               Gerenciar contas
             </ThemedText>
@@ -95,7 +99,7 @@ export default function HomeScreen() {
             <ThemedText>Todas as faturas</ThemedText>
             <ThemedText type='subtitle'>R$ 0,00</ThemedText>
           </ThemedView>
-          <IconSymbol name="eye.fill" color="white" />
+          <IconSymbol name="eye.fill" color={Colors[colorScheme ?? 'light'].icon} />
         </ThemedView>
 
         <Separator className='my-4' />
@@ -124,7 +128,7 @@ export default function HomeScreen() {
               </ThemedView>
             ))}
           </ThemedView>
-          <Button className={cn('my-8 dark:bg-black')}>
+          <Button variant="outline" className={cn('my-8')}>
             <ThemedText type='defaultSemiBold'>
               Gerenciar cartões
             </ThemedText>
@@ -141,20 +145,8 @@ export default function HomeScreen() {
         <IconSymbol size={36} name="right.fill" color="green" />
       </ThemedView>
 
+      <ThemedView className={cn("my-8")}/>
+
     </ParallaxScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});

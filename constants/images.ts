@@ -1,0 +1,1 @@
+export const GITHUB_AVATAR_URI = 'https://github.com/adeirjunior.png';

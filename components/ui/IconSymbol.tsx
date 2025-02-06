@@ -19,6 +19,7 @@ const MAPPING = {
   'right.fill': 'chevron-right',
   'eye.fill': 'remove-red-eye',
   'folder.fill': 'create-new-folder',
+  'plus.fill': 'add'
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],
