@@ -5,8 +5,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
 import { Text } from '~/components/ui/text';
 import { cn } from '~/lib/utils';
 import { Button } from '~/components/ui/button';
-import { H1, H2, H3, H4 } from '~/components/ui/typography';
+import { H4, P } from '~/components/ui/typography';
 import { GITHUB_AVATAR_URI } from '~/constants/images';
+import { Link } from 'expo-router';
+import { View } from 'react-native';
+import { IconSymbol } from '~/components/ui/IconSymbol';
 
 export default function Profile() {
   return (
@@ -25,8 +28,18 @@ export default function Profile() {
 
       <ThemedView className='flex flex-col gap-4'>
         <H4>Configure</H4>
-        <ThemedText type="defaultSemiBold">Adeir do Bom Fim Junior</ThemedText>
+        <Link href="/accounts"><ThemedText>Contas</ThemedText></Link>
+        <Link href="/custom-categories"><ThemedText>Categorias</ThemedText></Link>
+        <Link href="/cards"><ThemedText>Cartões de Crédito</ThemedText></Link>
       </ThemedView>
+
+      <View className='flex flex-row gap-4 items-center bg-yellow-600 p-4 rounded-lg'>
+        <IconSymbol size={30} color='white' name='diamond.fill' />
+        <View>
+          <H4>Você está no plano Anual</H4>
+        <P>Renova em 25/10/2025</P>
+        </View>
+      </View>
       
     </ParallaxScrollView>
   );

@@ -11,6 +11,7 @@ import { Link, useRouter } from 'expo-router';
 import { Colors } from '@/constants/Colors';
 import { GITHUB_AVATAR_URI } from '~/constants/images';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Pressable } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -36,19 +37,21 @@ export default function HomeScreen() {
           </ThemedView>
         </ThemedView>
 
-          <Button variant="outline" onPress={() => router.push('/notifications')}>
+        <Button variant="outline" onPress={() => router.push('/notifications')}>
           <IconSymbol name="notification.fill" color={Colors[colorScheme ?? 'light'].icon} />
-          </Button>
+        </Button>
       </ThemedView>
 
-      <ThemedView className={cn('gap-4 flex flex-row justify-between items-center')}>
-        <IconSymbol size={36} name="danger.fill" color="gray" />
-        <ThemedView className={cn('w-56')}>
-          <ThemedText type="defaultSemiBold">Lançamentos atrasados</ThemedText>
-          <ThemedText>Você tem 12 lançamentos atrasados</ThemedText>
+      <Pressable onPress={() => router.push('/late')}>
+        <ThemedView className={cn('gap-4 flex my-8 flex-row justify-between items-center')}>
+          <IconSymbol size={36} name="danger.fill" color="gray" />
+          <ThemedView className={cn('w-56')}>
+            <ThemedText type="defaultSemiBold">Lançamentos atrasados</ThemedText>
+            <ThemedText>Você tem 12 lançamentos atrasados</ThemedText>
+          </ThemedView>
+          <IconSymbol size={36} name="right.fill" color="green" />
         </ThemedView>
-        <IconSymbol size={36} name="right.fill" color="green" />
-      </ThemedView>
+      </Pressable>
 
       <ThemedView>
         <ThemedView className={cn('gap-4 flex flex-row justify-between items-center')}>
@@ -128,7 +131,7 @@ export default function HomeScreen() {
               </ThemedView>
             ))}
           </ThemedView>
-          <Button variant="outline" className={cn('my-8')}>
+          <Button onPress={() => router.push('/cards')} variant="outline" className={cn('my-8')}>
             <ThemedText type='defaultSemiBold'>
               Gerenciar cartões
             </ThemedText>
@@ -136,7 +139,8 @@ export default function HomeScreen() {
         </ThemedView>
       </ThemedView>
 
-      <ThemedView className={cn('gap-4 flex flex-row justify-between items-center')}>
+      <Pressable onPress={() => router.push('/custom-categories')}>
+        <ThemedView className={cn('gap-4 flex flex-row justify-between items-center')}>
         <IconSymbol size={36} name="folder.fill" color="gray" />
         <ThemedView className={cn('w-56')}>
           <ThemedText type="defaultSemiBold">Personalizar categorias</ThemedText>
@@ -144,8 +148,10 @@ export default function HomeScreen() {
         </ThemedView>
         <IconSymbol size={36} name="right.fill" color="green" />
       </ThemedView>
+      </Pressable>
+      
 
-      <ThemedView className={cn("my-8")}/>
+      <ThemedView className={cn("my-8")} />
 
     </ParallaxScrollView>
   );

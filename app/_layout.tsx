@@ -35,6 +35,9 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="profile" />
         <Stack.Screen name="accounts" />
+        <Stack.Screen name="cards" />
+        <Stack.Screen name="custom-categories" />
+        <Stack.Screen name="late" />
         <Stack.Screen name="configurations" />
         <Stack.Screen name="notifications" />
         <Stack.Screen name="+not-found" />

@@ -6,6 +6,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { cn } from '~/lib/utils';
 
 export default function TabTwoScreen() {
   return (
@@ -91,6 +92,8 @@ export default function TabTwoScreen() {
           ),
         })}
       </Collapsible>
+
+      <ThemedView className={cn("my-8")} />
     </ParallaxScrollView>
   );
 }

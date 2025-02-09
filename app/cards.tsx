@@ -6,9 +6,8 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import { cn } from '~/lib/utils';
 
-export default function TabTwoScreen() {
+export default function Cards() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -21,7 +20,7 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Fluxo de Caixa</ThemedText>
+        <ThemedText type="title">Cartões</ThemedText>
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="File-based routing">
@@ -92,8 +91,6 @@ export default function TabTwoScreen() {
           ),
         })}
       </Collapsible>
-
-      <ThemedView className={cn("my-8")} />
     </ParallaxScrollView>
   );
 }
