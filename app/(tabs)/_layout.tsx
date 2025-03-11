@@ -1,6 +1,7 @@
+import axios from 'axios';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, StyleSheet, ToastAndroid } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -11,6 +12,33 @@ import { cn } from '~/lib/utils';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+
+  const onPress = async () => {
+    console.log("Botão pressionado, iniciando requisição com Axios...");
+  
+    try {
+      const response = await axios.get('http://192.168.1.110:8000', {
+        headers: { Accept: 'application/json' },
+      });
+
+      if(response.status === 200) {
+        console.log("Requisição bem-sucedida!");
+      }
+      
+  
+      console.log("Resposta recebida:", response.data);
+      ToastAndroid.show(`Status: ${response.status}`, ToastAndroid.SHORT);
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+  
+      if (axios.isAxiosError(error)) {
+        console.error("Detalhes do erro:", error.response);
+        ToastAndroid.show(`Erro: ${error.response?.data || "Sem detalhes"}`, ToastAndroid.LONG);
+      } else {
+        ToastAndroid.show(`Erro inesperado: ${(error as Error).message}`, ToastAndroid.LONG);
+      }
+    }
+  };
 
   return (
     <>
@@ -55,7 +83,7 @@ export default function TabLayout() {
         />
       </Tabs>
       <View className={cn("absolute bg-transparent items-center justify-center")} style={styles.fabContainer}>
-        <TouchableOpacity className={cn("items-center justify-center")} style={{ ...styles.fab, backgroundColor: Colors[colorScheme ?? 'light'].background }} onPress={() => console.log('Ação')}>
+        <TouchableOpacity className={cn("items-center justify-center")} style={{ ...styles.fab, backgroundColor: Colors[colorScheme ?? 'light'].background }} onPress={onPress}>
           <IconSymbol size={30} name="plus.fill" color={Colors[colorScheme ?? 'light'].icon} />
         </TouchableOpacity>
       </View>

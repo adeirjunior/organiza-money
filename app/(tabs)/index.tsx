@@ -12,6 +12,7 @@ import { Colors } from '@/constants/Colors';
 import { GITHUB_AVATAR_URI } from '~/constants/images';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Pressable } from 'react-native';
+import { bankLogos } from '~/constants/banks';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -67,20 +68,20 @@ export default function HomeScreen() {
         <ThemedView>
           <ThemedText type='subtitle'>Minhas contas</ThemedText>
           <ThemedView>
-            {[...Array(6)].map((_, index) => (
+            {bankLogos.map((bank, index) => (
               <ThemedView
                 key={index}
                 className={cn('mt-10 flex flex-row justify-between items-center')}
               >
                 <ThemedView className={cn('flex flex-row gap-4')}>
-                  <Avatar className={cn('w-12 h-12')} alt={''}>
-                    <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
+                  <Avatar className={cn('w-12 h-12')} alt={bank.name}>
+                    <AvatarImage source={{ uri: bank.uri }} />
                     <AvatarFallback>
-                      <Text>AD</Text>
+                      <Text>{bank.name[0]}</Text>
                     </AvatarFallback>
                   </Avatar>
                   <ThemedView>
-                    <ThemedText type='defaultSemiBold'>Nuconta</ThemedText>
+                    <ThemedText type='defaultSemiBold'>{bank.name}</ThemedText>
                     <ThemedText>Conta manual</ThemedText>
                   </ThemedView>
                 </ThemedView>
