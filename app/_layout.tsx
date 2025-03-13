@@ -11,7 +11,6 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {

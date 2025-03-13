@@ -29,7 +29,7 @@ const MAPPING = {
 >;
 
 
-export type IconSymbolName = keyof typeof MAPPING;
+export type IconSymbolName = keyof typeof MAPPING | string;
 
 /**
  * An icon component that uses native SFSymbols on iOS, and MaterialIcons on Android and web. This ensures a consistent look across platforms, and optimal resource usage.
@@ -48,5 +48,8 @@ export function IconSymbol({
   style?: StyleProp<TextStyle>;
   weight?: SymbolWeight;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  // Evita erro de indexação e fornece um fallback seguro
+  const iconName = MAPPING[name as keyof typeof MAPPING] ?? name;
+
+  return <MaterialIcons color={color} size={size} name={iconName as React.ComponentProps<typeof MaterialIcons>['name']} style={style} />;
 }

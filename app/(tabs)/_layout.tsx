@@ -15,29 +15,6 @@ export default function TabLayout() {
 
   const onPress = async () => {
     console.log("Botão pressionado, iniciando requisição com Axios...");
-  
-    try {
-      const response = await axios.get('http://192.168.1.110:8000', {
-        headers: { Accept: 'application/json' },
-      });
-
-      if(response.status === 200) {
-        console.log("Requisição bem-sucedida!");
-      }
-      
-  
-      console.log("Resposta recebida:", response.data);
-      ToastAndroid.show(`Status: ${response.status}`, ToastAndroid.SHORT);
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-  
-      if (axios.isAxiosError(error)) {
-        console.error("Detalhes do erro:", error.response);
-        ToastAndroid.show(`Erro: ${error.response?.data || "Sem detalhes"}`, ToastAndroid.LONG);
-      } else {
-        ToastAndroid.show(`Erro inesperado: ${(error as Error).message}`, ToastAndroid.LONG);
-      }
-    }
   };
 
   return (
